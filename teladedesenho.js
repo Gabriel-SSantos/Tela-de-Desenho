@@ -35,28 +35,23 @@ canvas.onmouseup = ()=>{
 };
 
 canvas.onmousemove = (evento)=>{
-   // ctx.clearRect(0,0,canvas.width,canvas.height)
+   
     pincel.pos.x = evento.clientX - 9; 
     pincel.pos.y = evento.clientY - 9;
-    //ctx.fillRect(0,0,10,10);
-   // ctx.fillText(`PosX: ${evento.clientX} PosY: ${evento.clientY}`, pincel.pos.x,pincel.pos.y);
     pincel.movendo = true; 
 }
 
-canvas.ontouchstart = ()=>{
-    pincel.ativo = true;
-};
+canvas.addEventListener('touchstart',()=>{pincel.ativo = true;})
 
-canvas.ontouchcancel = ()=>{
-    pincel.ativo = false;
-};
+canvas.addEventListener('touchend',()=>{
+  pincel.ativo = false;  
+})
 
-canvas.ontouchmove = ()=>{
+canvas.addEventListener('touchmove',()=>{
     pincel.pos.x = evento.clientX; 
     pincel.pos.y = evento.clientY;
     pincel.movendo = true; 
-}
-
+})
 
 function desenhar(){
     if(pincel.ativo && pincel.movendo && pincel.posAnterior){
