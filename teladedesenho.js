@@ -4,6 +4,9 @@ let ctx = canvas.getContext('2d')
 let altura = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 let largura = document.body.clientWidth
 
+let espessura = document.getElementById('TamanhodaLinha')
+let cor = document.getElementById('Cor')
+
 canvas.height = altura * 0.95
 canvas.width = largura
 
@@ -19,7 +22,8 @@ const pincel = {
 
 
 function rabiscar(linha){
-    ctx.lineWidth = 5
+    ctx.lineWidth = Number(espessura.value) 
+    ctx.strokeStyle = cor.value
     ctx.beginPath();
     ctx.moveTo(linha.posAnterior.x,linha.posAnterior.y);
     ctx.lineTo(linha.pos.x,linha.pos.y);
@@ -42,9 +46,9 @@ canvas.onmousemove = (evento)=>{
 }
 
 canvas.addEventListener('touchstart',(evento)=>{
+    evento.preventDefault()
+    var toque = evento.changedTouches;
     if(!pincel.ativo){
-        evento.preventDefault()
-        var toque = evento.changedTouches;
         pincel.posAnterior = {x: toque[0].pageX, y: toque[0].pageY}
     }
     pincel.ativo = true;
@@ -64,10 +68,11 @@ canvas.addEventListener('touchmove',(evento)=>{
 
 function desenhar(){
     if(pincel.ativo && pincel.movendo && pincel.posAnterior){
-        rabiscar({pos: pincel.pos, posAnterior: pincel.posAnterior});
+        rabiscar({pos: pincel.pos, posAnterior: pincel.posAnterior}); 
+        pincel.posAnterior = {x: pincel.pos.x, y: pincel.pos.y}
         pincel.movendo = false;
-        if(canvas.width < 500)
-            pincel.posAnterior = {x: pincel.pos.x, y: pincel.pos.y}
+        
+           
     }
     if(canvas.width > 500)
         pincel.posAnterior = {x: pincel.pos.x, y: pincel.pos.y}
