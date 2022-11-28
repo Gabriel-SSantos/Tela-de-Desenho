@@ -42,6 +42,11 @@ canvas.onmousemove = (evento)=>{
 }
 
 canvas.addEventListener('touchstart',()=>{
+    if(!pincel.ativo){
+        evento.preventDefault()
+        var toque = evento.changedTouches;
+        pincel.posAnterior = {x: toque[0].pageX, y: toque[0].pageY}
+    }
     pincel.ativo = true;
 })
 
