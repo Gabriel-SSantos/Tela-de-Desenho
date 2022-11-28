@@ -43,6 +43,21 @@ canvas.onmousemove = (evento)=>{
     pincel.movendo = true; 
 }
 
+canvas.ontouchstart = ()=>{
+    pincel.ativo = true;
+};
+
+canvas.ontouchcancel = ()=>{
+    pincel.ativo = false;
+};
+
+canvas.ontouchmove = ()=>{
+    pincel.pos.x = evento.clientX; 
+    pincel.pos.y = evento.clientY;
+    pincel.movendo = true; 
+}
+
+
 function desenhar(){
     if(pincel.ativo && pincel.movendo && pincel.posAnterior){
         rabiscar({pos: pincel.pos, posAnterior: pincel.posAnterior});
