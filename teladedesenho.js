@@ -76,6 +76,7 @@ function desenhar(){
     }
     if(canvas.width > 500)
         pincel.posAnterior = {x: pincel.pos.x, y: pincel.pos.y}
+    setTimeout(desenhar,10);
 }
 
 function apagarTela(){
