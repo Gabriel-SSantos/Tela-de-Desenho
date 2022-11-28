@@ -41,7 +41,10 @@ canvas.onmousemove = (evento)=>{
     pincel.movendo = true; 
 }
 
-canvas.addEventListener('touchstart',()=>{pincel.ativo = true;})
+canvas.addEventListener('touchstart',()=>{
+    alert('coe')
+    pincel.ativo = true;
+})
 
 canvas.addEventListener('touchend',()=>{
   pincel.ativo = false;  
