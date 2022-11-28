@@ -49,18 +49,11 @@ canvas.onmousemove = (evento)=>{
 canvas.addEventListener('touchstart',(evento)=>{
     evento.preventDefault()
     var toque = evento.changedTouches;
-    if(!pincel.ativo){
-        pincel.posAnterior = {x: toque[0].pageX, y: toque[0].pageY}
-     
-    }
-    
-    pincel.ativo = true;
-    
+    pincel.posAnterior = {x: toque[0].pageX, y: toque[0].pageY}  
 })
 
 canvas.addEventListener('touchend',()=>{
-  pincel.ativo = false;
-
+    pincel.posAnterior = null;
 })
 
 canvas.addEventListener('touchmove',(evento)=>{
@@ -68,7 +61,9 @@ canvas.addEventListener('touchmove',(evento)=>{
     var toque = evento.changedTouches;
     pincel.pos.x = toque[0].pageX; 
     pincel.pos.y = toque[0].pageY;
-    pincel.movendo = true; 
+    rabiscar({pos: pincel.pos, posAnterior: pincel.posAnterior});
+    pincel.posAnterior = {x: pincel.pos.x, y: pincel.pos.y}
+   
 })
 
 
@@ -80,11 +75,11 @@ function desenhar(){
         pincel.movendo = false;
 
     }
-    if(canvas.width > 500)
-        pincel.posAnterior = {x: pincel.pos.x, y: pincel.pos.y} 
+    pincel.posAnterior = {x: pincel.pos.x, y: pincel.pos.y} 
     setTimeout(desenhar,10);
 }
 function apagarTela(){
     ctx.clearRect(0,0,canvas.width,canvas.height)
 }
-desenhar()
+if(canvas.width > 500)
+    desenhar()
