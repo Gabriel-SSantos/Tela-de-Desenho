@@ -41,7 +41,7 @@ canvas.onmousemove = (evento)=>{
     pincel.movendo = true; 
 }
 
-canvas.addEventListener('touchstart',()=>{
+canvas.addEventListener('touchstart',(evento)=>{
     if(!pincel.ativo){
         evento.preventDefault()
         var toque = evento.changedTouches;
