@@ -50,8 +50,10 @@ canvas.addEventListener('touchend',()=>{
 })
 
 canvas.addEventListener('touchmove',(evento)=>{
-    pincel.pos.x = evento.clientX; 
-    pincel.pos.y = evento.clientY;
+    evento.preventDefault()
+    var toque = evento.changedTouches;
+    pincel.pos.x = toque[0].pageX; 
+    pincel.pos.y = toque[0].pageY;
     pincel.movendo = true; 
 })
 
