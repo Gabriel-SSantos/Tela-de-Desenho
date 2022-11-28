@@ -65,4 +65,9 @@ function desenhar(){
     pincel.posAnterior = {x: pincel.pos.x, y: pincel.pos.y}
     setTimeout(desenhar,10);
 }
+
+function apagarTela(){
+    ctx.clearRect(0,0,canvas.width,canvas.height)
+}
+
 desenhar()
