@@ -66,9 +66,11 @@ function desenhar(){
     if(pincel.ativo && pincel.movendo && pincel.posAnterior){
         rabiscar({pos: pincel.pos, posAnterior: pincel.posAnterior});
         pincel.movendo = false;
+        if(canvas.width < 500)
+            pincel.posAnterior = {x: pincel.pos.x, y: pincel.pos.y}
     }
-    pincel.posAnterior = {x: pincel.pos.x, y: pincel.pos.y}
-    setTimeout(desenhar,10);
+    if(canvas.width > 500)
+        pincel.posAnterior = {x: pincel.pos.x, y: pincel.pos.y}
 }
 
 function apagarTela(){
