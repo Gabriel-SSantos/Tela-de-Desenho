@@ -4,7 +4,7 @@ let ctx = canvas.getContext('2d')
 let altura = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 let largura = document.body.clientWidth
 
-canvas.height = altura * 0.9
+canvas.height = altura * 0.95
 canvas.width = largura
 
 const pincel = {
